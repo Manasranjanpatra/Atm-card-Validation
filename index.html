@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        width: 80%;
+        height: fit-content;
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        border: 2px solid rgb(179, 6, 242);
+        align-items: center;
+        flex-direction: column;
+        padding: 30px 15px;
+        box-shadow: 2px 10px 13px rgb(15, 14, 14,0.6);
+        }
+        input {
+            margin-top: 1rem;
+            padding: 0.7rem 1.2rem;
+            border: 2px solid rgb(7, 3, 235);
+        border: none;
+        outline: none;
+        font-size: 1.1rem;
+        text-align: center;
+        border-radius: 5px;
+        }
+      button{
+        
+        padding: 4px 11px;
+        font-size: 1.4rem;
+        
+        background-color: rgb(0, 157, 255);
+        cursor: pointer;
+        border-radius: 5px ;
+        margin-top: 1.4rem;
+      }
+      button:hover {
+        box-shadow: 0 0 5px rgb(0, 157, 255), 0 0 10px rgb(0, 157, 255),
+          0 0 15px rgb(0, 157, 255);
+      }
+      h1{
+        text-align: center;
+      }
+      p{
+        font-size: 1.1rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcoome to Atm card Validation</h1>
+      <p>Enter a 16 digit account Number</p>
+
+      <input
+        type="number"
+        name=""
+        id="input"
+        placeholder="Enter AtmCard Number"
+      />
+      <button class="fill">Submit</button>
+    </div>
+    <script>
+      let number = document.querySelector("#input");
+
+      let buttons = document.querySelector("button");
+      number.addEventListener("change", (e) => {
+        let ATmno = e.target.value;
+        let Ano = Number(ATmno);
+        console.log(Ano);
+
+      buttons.addEventListener("click", () => {
+
+   
+       
+        let reversedAno = Ano.toString().split("").reverse().map(Number);
+        console.log(reversedAno);
+
+        for (i = 0; i < reversedAno.length; i++) {
+          if (i % 2 !== 0) {
+            reversedAno[i] *= 2;
+          }
+        }
+        let Greter = reversedAno.map((currelem, index) => {
+          if (currelem > 9) {
+            return currelem - 9;
+          } else {
+            return currelem;
+          }
+        });
+        console.log(Greter);
+        let accu = Greter.reduce(
+          (accumul, currelem) => (accumul += currelem),
+          0
+        );
+        console.log(accu);
+        // let Muliti2=reverseAno.
+        // console.log(Muliti2)
+
+        if (accu % 10 == 0) {
+          alert("The account Number is valid");
+        } else {
+          alert("The account no is  notvalid");
+        }
+      });
+    });
+    </script>
+  </body>
+</html>
